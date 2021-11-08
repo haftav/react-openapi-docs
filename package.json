@@ -9,6 +9,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "openapi-types": "^9.3.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },

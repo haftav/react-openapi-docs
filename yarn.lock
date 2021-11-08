@@ -2018,6 +2018,11 @@ onetime@^5.1.0, onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
+openapi-types@^9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-9.3.0.tgz#2d90549edb928cf06cf83018485a1a5961fbd2b9"
+  integrity sha512-sR23YjmuwDSMsQVZDHbV9mPgi0RyniQlqR0AQxTC2/F3cpSjRFMH3CFPjoWvNqhC4OxPkDYNb2l8Mc1Me6D/KQ==
+
 optionator@^0.9.1:
   version "0.9.1"
   resolved "https://registry.npmjs.org/optionator/-/optionator-0.9.1.tgz"

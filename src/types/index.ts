@@ -1,36 +1,10 @@
-export interface OpenApiSchema {
-  info: {
-    title: string;
-    version: string;
-  };
-  paths: {
-    [key: string]: PathObject;
-  };
-}
+import { OpenAPIV3 } from 'openapi-types';
 
-export interface PathObject {
-  summary?: string;
-  description?: string;
-  get?: OperationObject;
-  put?: OperationObject | string;
-  post?: OperationObject;
-  delete?: OperationObject;
-  options?: OperationObject;
-  head?: OperationObject;
-  patch?: OperationObject;
-}
+// reexporting types here in case I want to extend
+export type OpenApiSchema = OpenAPIV3.Document;
 
-interface OperationObject {
-  tags?: string[];
-  summary?: string;
-  description?: string;
-  externalDocs?: unknown;
-  operationId?: string;
-  parameters?: unknown[];
-  requestBody?: unknown;
-  responses: unknown;
-  callbacks?: unknown;
-  deprecated?: boolean;
-  security?: unknown;
-  servers?: unknown;
-}
+export type PathsObject = OpenAPIV3.PathsObject;
+
+export type PathObject = OpenAPIV3.PathItemObject;
+
+export type OperationObject = OpenAPIV3.OperationObject;
