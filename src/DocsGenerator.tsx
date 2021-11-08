@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { OpenApiSchema } from './types';
+import { OpenApiSchema } from './interfaces';
 
 // in progress
 function createDocsInstance(spec: OpenApiSchema) {

@@ -1,4 +1,4 @@
-import { PathObject } from '../types';
+import { PathObject } from '../interfaces';
 
 interface PathProps {
   path: PathObject;

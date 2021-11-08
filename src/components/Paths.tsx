@@ -1,6 +1,6 @@
 import { useDocsContext } from '../DocsGenerator';
 
-import { PathObject } from '../types';
+import { PathObject } from '../interfaces';
 import Path from './Path';
 
 interface PathsProps {
