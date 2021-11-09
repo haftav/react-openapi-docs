@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import DocsGenerator from './DocsGenerator';
 import Info from './components/Info';
 import Paths from './components/Paths';

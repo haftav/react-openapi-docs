@@ -1,13 +1,10 @@
 import * as React from 'react';
 
-import { OpenApiSchema } from './interfaces';
+import ErrorBoundary from '@components/ErrorBoundary';
 
-// in progress
-function createDocsInstance(spec: OpenApiSchema) {
-  return {
-    paths: [{ key: '/workflows', summary: 'test', operations: [] }],
-  };
-}
+import { isValidSchema } from '@utils';
+
+import { OpenApiSchema } from './interfaces';
 
 interface DocsContextInterface {
   spec: OpenApiSchema;
@@ -16,12 +13,30 @@ interface DocsContextInterface {
 const DocsContext = React.createContext<DocsContextInterface | null>(null);
 
 interface DocsProviderProps {
-  spec: OpenApiSchema;
+  spec: unknown;
   children: React.ReactNode;
 }
 
 const DocsProvider = ({ spec, children }: DocsProviderProps) => {
-  return <DocsContext.Provider value={{ spec }}>{children}</DocsContext.Provider>;
+  const valid = React.useRef(true);
+
+  React.useMemo(() => {
+    if (!isValidSchema(spec)) {
+      valid.current = false;
+    } else {
+      valid.current = true;
+    }
+  }, [spec]);
+
+  if (!valid.current) {
+    throw new Error('Invalid schema supplied to DocsGenerator');
+  }
+
+  return (
+    <DocsContext.Provider value={{ spec } as { spec: OpenApiSchema }}>
+      {children}
+    </DocsContext.Provider>
+  );
 };
 
 export function useDocsContext() {
@@ -35,12 +50,16 @@ export function useDocsContext() {
 }
 
 interface DocsGeneratorProps {
-  spec: OpenApiSchema;
+  spec: unknown;
   children?: React.ReactNode;
 }
 
 const DocsGenerator = ({ spec, children }: DocsGeneratorProps) => {
-  return <DocsProvider spec={spec}>{children}</DocsProvider>;
+  return (
+    <ErrorBoundary>
+      <DocsProvider spec={spec}>{children}</DocsProvider>
+    </ErrorBoundary>
+  );
 };
 
 export default DocsGenerator;
