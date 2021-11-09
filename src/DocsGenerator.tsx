@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import ErrorBoundary from '@components/ErrorBoundary';
 
-import { isValidSchema } from '@utils';
+import useSpecTypeGuard from '@hooks/useSpecTypeGuard';
 
 import { OpenApiSchema } from './interfaces';
 
@@ -18,19 +18,7 @@ interface DocsProviderProps {
 }
 
 const DocsProvider = ({ spec, children }: DocsProviderProps) => {
-  const valid = React.useRef(true);
-
-  React.useMemo(() => {
-    if (!isValidSchema(spec)) {
-      valid.current = false;
-    } else {
-      valid.current = true;
-    }
-  }, [spec]);
-
-  if (!valid.current) {
-    throw new Error('Invalid schema supplied to DocsGenerator');
-  }
+  useSpecTypeGuard(spec);
 
   return (
     <DocsContext.Provider value={{ spec } as { spec: OpenApiSchema }}>

@@ -9,6 +9,7 @@ export default defineConfig({
       { find: '@components', replacement: '/src/components' },
       { find: '@interfaces', replacement: '/src/interfaces' },
       { find: '@utils', replacement: '/src/utils' },
+      { find: '@hooks', replacement: '/src/hooks' },
     ],
   },
 });
