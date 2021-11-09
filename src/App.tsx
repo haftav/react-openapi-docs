@@ -1,14 +1,15 @@
-import testSpec from '../testSpec.json';
+import * as React from 'react';
 
 import DocsGenerator from './DocsGenerator';
 import Info from './components/Info';
 import Paths from './components/Paths';
-import { OpenApiSchema } from './interfaces';
+
+import testSpec from '../testSpec.json';
 
 const App = () => {
   return (
     <div>
-      <DocsGenerator spec={testSpec as OpenApiSchema}>
+      <DocsGenerator spec={testSpec}>
         <Info />
         <Paths />
       </DocsGenerator>
