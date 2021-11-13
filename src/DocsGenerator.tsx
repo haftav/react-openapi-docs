@@ -4,7 +4,9 @@ import ErrorBoundary from '@components/ErrorBoundary';
 
 import useSpecTypeGuard from '@hooks/useSpecTypeGuard';
 
-import { OpenApiSchema } from './interfaces';
+import converter from '@utils/converter';
+
+import { OpenApiSchema } from '@interfaces';
 
 interface DocsContextInterface {
   spec: OpenApiSchema;
@@ -19,6 +21,10 @@ interface DocsProviderProps {
 
 const DocsProvider = ({ spec, children }: DocsProviderProps) => {
   useSpecTypeGuard(spec);
+
+  const document = converter(spec as OpenApiSchema);
+
+  console.log(document);
 
   return (
     <DocsContext.Provider value={{ spec } as { spec: OpenApiSchema }}>

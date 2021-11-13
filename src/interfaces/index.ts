@@ -8,3 +8,7 @@ export type PathsObject = OpenAPIV3.PathsObject;
 export type PathObject = OpenAPIV3.PathItemObject;
 
 export type OperationObject = OpenAPIV3.OperationObject;
+
+export type OpenAPIV3Tag = OpenAPIV3.TagObject;
+
+export type HttpMethod = 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch' | 'trace';
