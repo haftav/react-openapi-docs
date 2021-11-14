@@ -1,6 +1,6 @@
 import DocsGenerator from './DocsGenerator';
 import Info from './components/Info';
-import Paths from './components/Paths';
+import Resources from './components/Resources';
 
 import testSpec from '../testSpec.json';
 
@@ -9,7 +9,7 @@ const App = () => {
     <div>
       <DocsGenerator spec={testSpec}>
         <Info />
-        <Paths />
+        <Resources />
       </DocsGenerator>
     </div>
   );

@@ -1,30 +1,16 @@
-import { OpenApiSchema, HttpMethod, OperationObject } from '@interfaces';
+import {
+  ConvertedSpec,
+  Info,
+  Resource,
+  Endpoint,
+  OpenApiSchema,
+  HttpMethod,
+  OperationObject,
+} from '@models';
 
-interface Document {
-  info: Info;
-  resources: Resource[];
-  models: unknown;
-}
-
-interface Info {
-  title: string;
-  description?: string;
-  version: string;
-}
-
-interface Resource {
-  title: string;
-  description?: string;
-  endpoints: Endpoint[];
-}
 interface ResourceMap {
   [key: string]: Resource;
 }
-
-type Endpoint = {
-  path: string;
-  method: HttpMethod;
-} & OperationObject;
 
 function isMethodKey(str: string): str is HttpMethod {
   const methods = {
@@ -45,7 +31,7 @@ function isMethodKey(str: string): str is HttpMethod {
   return false;
 }
 
-export default function converter(spec: OpenApiSchema): Document {
+export default function convertSpec(spec: OpenApiSchema): ConvertedSpec {
   const { info: specInfo, paths: specPaths, tags: specTags } = spec;
 
   // info

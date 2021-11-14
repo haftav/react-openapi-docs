@@ -4,12 +4,12 @@ import ErrorBoundary from '@components/ErrorBoundary';
 
 import useSpecTypeGuard from '@hooks/useSpecTypeGuard';
 
-import converter from '@utils/converter';
+import convertSpec from '@utils/convertSpec';
 
-import { OpenApiSchema } from '@interfaces';
+import { OpenApiSchema, ConvertedSpec } from '@models';
 
 interface DocsContextInterface {
-  spec: OpenApiSchema;
+  spec: ConvertedSpec;
 }
 
 const DocsContext = React.createContext<DocsContextInterface | null>(null);
@@ -19,18 +19,13 @@ interface DocsProviderProps {
   children: React.ReactNode;
 }
 
-const DocsProvider = ({ spec, children }: DocsProviderProps) => {
-  useSpecTypeGuard(spec);
+const DocsProvider = ({ spec: maybeValidSpec, children }: DocsProviderProps) => {
+  useSpecTypeGuard(maybeValidSpec);
 
-  const document = converter(spec as OpenApiSchema);
+  const spec = maybeValidSpec as OpenApiSchema;
+  const convertedSpec = convertSpec(spec);
 
-  console.log(document);
-
-  return (
-    <DocsContext.Provider value={{ spec } as { spec: OpenApiSchema }}>
-      {children}
-    </DocsContext.Provider>
-  );
+  return <DocsContext.Provider value={{ spec: convertedSpec }}>{children}</DocsContext.Provider>;
 };
 
 export function useDocsContext() {

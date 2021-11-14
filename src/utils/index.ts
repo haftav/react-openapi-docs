@@ -1,6 +1,6 @@
 import OpenAPISchemaValidator from 'openapi-schema-validator';
 
-import { OpenApiSchema } from '../interfaces';
+import { OpenApiSchema } from '@models';
 
 const validator = new OpenAPISchemaValidator({
   version: 3,
