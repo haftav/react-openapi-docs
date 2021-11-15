@@ -1,6 +1,6 @@
 import OpenAPISchemaValidator from 'openapi-schema-validator';
 
-import { OpenApiSchema } from '@models';
+import { OpenApiSchema, ReferenceObject } from '@models';
 
 const validator = new OpenAPISchemaValidator({
   version: 3,
@@ -14,4 +14,12 @@ export function isValidSchema(json: unknown): json is OpenApiSchema {
   }
 
   return true;
+}
+
+export function isReferenceObject(obj: unknown): obj is ReferenceObject {
+  if ('$ref' in (obj as ReferenceObject)) {
+    return true;
+  }
+
+  return false;
 }

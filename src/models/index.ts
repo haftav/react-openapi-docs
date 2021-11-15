@@ -7,6 +7,10 @@ export type PathsObject = OpenAPIV3.PathsObject;
 
 export type PathObject = OpenAPIV3.PathItemObject;
 
+export type ParameterObject = OpenAPIV3.ParameterObject;
+
+export type ReferenceObject = OpenAPIV3.ReferenceObject;
+
 export type OperationObject = OpenAPIV3.OperationObject;
 
 export type OpenAPIV3Tag = OpenAPIV3.TagObject;

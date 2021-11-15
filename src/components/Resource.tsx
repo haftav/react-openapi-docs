@@ -4,6 +4,8 @@ import {
   HttpMethod as HttpMethodType,
 } from '@models';
 
+import Parameters from './Parameters';
+
 const Title = ({ children }: { children: string }) => <h2 className="text-xl">{children}</h2>;
 
 const Description = ({ children }: { children: string | undefined }) => {
@@ -15,9 +17,10 @@ const Description = ({ children }: { children: string | undefined }) => {
 };
 
 const Endpoint = ({ endpoint }: { endpoint: EndpointType }) => (
-  <div>
+  <div className="border border-purple-400">
     <EndpointSummary>{endpoint.summary}</EndpointSummary>
     <HttpMethod method={endpoint.method} path={endpoint.path} />
+    <Parameters parameters={endpoint.parameters} />
   </div>
 );
 
@@ -48,7 +51,7 @@ interface PathProps {
 
 const Resource = ({ resource }: PathProps) => {
   return (
-    <div className="border-b border-green-500">
+    <div>
       <pre key={resource.title}>{JSON.stringify(resource, null, 2)}</pre>
       <Title>{resource.title}</Title>
       <Description>{resource.description}</Description>
