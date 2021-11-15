@@ -3,17 +3,15 @@ import * as React from 'react';
 import { isValidSchema } from '@utils';
 
 export default function useSpecTypeGuard(spec: unknown) {
-  const valid = React.useRef(true);
-
-  React.useMemo(() => {
+  const isValid = React.useMemo(() => {
     if (!isValidSchema(spec)) {
-      valid.current = false;
+      return false;
     } else {
-      valid.current = true;
+      return true;
     }
   }, [spec]);
 
-  if (!valid.current) {
+  if (!isValid) {
     throw new Error('Invalid schema supplied to DocsGenerator');
   }
 }
